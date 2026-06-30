@@ -1,0 +1,29 @@
+# IDE directories
+.vscode/
+.idea/
+*.iml
+
+# Build artifacts
+target/
+*.class
+ai-service/dist/
+ai-service/node_modules/
+
+# Environment files (NEVER COMMIT THESE)
+.env
+*.env
+!.env.example
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Test and development files
+test-*.txt
+test-*.js
+create-jwt.*

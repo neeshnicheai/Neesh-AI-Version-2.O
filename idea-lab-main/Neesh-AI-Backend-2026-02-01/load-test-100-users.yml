@@ -1,0 +1,87 @@
+# Artillery Load Test Configuration for 100 Concurrent Users
+# Run with: artillery run load-test-100-users.yml
+
+config:
+  target: 'http://localhost:8081'
+  phases:
+    # Warm-up phase
+    - duration: 30
+      arrivalRate: 1
+      name: "Warm-up"
+
+    # Gradual ramp to 25 users
+    - duration: 60
+      arrivalRate: 5
+      rampTo: 25
+      name: "Ramp to 25 users"
+
+    # Ramp to 50 users
+    - duration: 60
+      arrivalRate: 25
+      rampTo: 50
+      name: "Ramp to 50 users"
+
+    # Ramp to 75 users
+    - duration: 60
+      arrivalRate: 50
+      rampTo: 75
+      name: "Ramp to 75 users"
+
+    # Target: 100 concurrent users
+    - duration: 120
+      arrivalRate: 75
+      rampTo: 100
+      name: "Ramp to 100 users"
+
+    # Sustained load at 100 users
+    - duration: 180
+      arrivalRate: 100
+      name: "Sustained 100 users"
+
+  # Global request settings
+  defaults:
+    headers:
+      'Content-Type': 'application/json'
+      # Replace with your actual JWT token for testing
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+
+scenarios:
+  - name: "Chat API Load Test"
+    weight: 80
+    requests:
+      - post:
+          url: "/api/projects/550e8400-e29b-41d4-a716-446655440000/chat"
+          json:
+            query: "What is this project about? Can you explain the main features and functionality?"
+          capture:
+            - json: "$.requestId"
+              as: "requestId"
+          expect:
+            - statusCode: 200
+            - hasHeader: 'content-type'
+
+  - name: "Project List API"
+    weight: 15
+    requests:
+      - get:
+          url: "/api/projects"
+          expect:
+            - statusCode: 200
+
+  - name: "Health Check"
+    weight: 5
+    requests:
+      - get:
+          url: "/actuator/health"
+          expect:
+            - statusCode: 200
+
+# Performance thresholds - test will fail if these are exceeded
+expectations:
+  - http.response_time:
+      p95: 8000    # 95% of requests should complete within 8 seconds
+      p99: 15000   # 99% of requests should complete within 15 seconds
+  - http.request_rate: 90  # Should handle at least 90 requests per second
+  - http.codes.200: 95     # 95% success rate minimum
+  - http.codes.4xx: 3      # Max 3% client errors
+  - http.codes.5xx: 2      # Max 2% server errors

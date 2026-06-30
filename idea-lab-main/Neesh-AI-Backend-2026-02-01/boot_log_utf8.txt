@@ -1,0 +1,161 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.neeshai:backend >-------------------------
+[INFO] Building backend 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.1:run (default-cli) > test-compile @ backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ backend ---
+[INFO] skip non existing resourceDirectory C:\Users\Abhishek\Downloads\idea-lab-main\idea-lab-main\Neesh-AI-Backend-2026-02-01\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ backend ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.2.1:run (default-cli) < test-compile @ backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.1:run (default-cli) @ backend ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.1)
+
+2026-03-20T14:31:00.644+05:30  INFO 27188 --- [neesh-ai-backend] [           main] com.neeshai.backend.NeeshAiApplication   : Starting NeeshAiApplication using Java 21.0.9 with PID 27188 (C:\Users\Abhishek\Downloads\idea-lab-main\idea-lab-main\Neesh-AI-Backend-2026-02-01\target\classes started by Abhishek in C:\Users\Abhishek\Downloads\idea-lab-main\idea-lab-main\Neesh-AI-Backend-2026-02-01)
+2026-03-20T14:31:00.647+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.neeshai.backend.NeeshAiApplication   : Running with Spring Boot v3.2.1, Spring v6.1.2
+2026-03-20T14:31:00.648+05:30  INFO 27188 --- [neesh-ai-backend] [           main] com.neeshai.backend.NeeshAiApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-03-20T14:31:01.724+05:30  INFO 27188 --- [neesh-ai-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-20T14:31:01.905+05:30  INFO 27188 --- [neesh-ai-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 171 ms. Found 15 JPA repository interfaces.
+2026-03-20T14:31:02.801+05:30  INFO 27188 --- [neesh-ai-backend] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-03-20T14:31:02.817+05:30  INFO 27188 --- [neesh-ai-backend] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-20T14:31:02.817+05:30  INFO 27188 --- [neesh-ai-backend] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2026-03-20T14:31:02.923+05:30  INFO 27188 --- [neesh-ai-backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-20T14:31:02.923+05:30  INFO 27188 --- [neesh-ai-backend] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2179 ms
+2026-03-20T14:31:02.994+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : Driver class org.postgresql.Driver found in Thread context class loader TomcatEmbeddedWebappClassLoader
+  context: ROOT
+  delegate: true
+----------> Parent Classloader:
+jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e
+
+2026-03-20T14:31:03.108+05:30  INFO 27188 --- [neesh-ai-backend] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-20T14:31:03.173+05:30  INFO 27188 --- [neesh-ai-backend] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2026-03-20T14:31:03.238+05:30  INFO 27188 --- [neesh-ai-backend] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-20T14:31:03.524+05:30  INFO 27188 --- [neesh-ai-backend] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-20T14:31:03.555+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - configuration:
+2026-03-20T14:31:03.561+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : allowPoolSuspension.............false
+2026-03-20T14:31:03.563+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : autoCommit......................true
+2026-03-20T14:31:03.563+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : catalog.........................none
+2026-03-20T14:31:03.563+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : connectionInitSql...............none
+2026-03-20T14:31:03.563+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : connectionTestQuery.............none
+2026-03-20T14:31:03.563+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : connectionTimeout...............30000
+2026-03-20T14:31:03.565+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : dataSource......................none
+2026-03-20T14:31:03.565+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : dataSourceClassName.............none
+2026-03-20T14:31:03.565+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : dataSourceJNDI..................none
+2026-03-20T14:31:03.565+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : dataSourceProperties............{password=<masked>}
+2026-03-20T14:31:03.565+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : driverClassName................."org.postgresql.Driver"
+2026-03-20T14:31:03.566+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : exceptionOverrideClassName......none
+2026-03-20T14:31:03.566+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : healthCheckProperties...........{}
+2026-03-20T14:31:03.566+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : healthCheckRegistry.............none
+2026-03-20T14:31:03.566+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : idleTimeout.....................600000
+2026-03-20T14:31:03.566+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : initializationFailTimeout.......1
+2026-03-20T14:31:03.566+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : isolateInternalQueries..........false
+2026-03-20T14:31:03.566+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : jdbcUrl.........................jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:6543/postgres?prepareThreshold=0
+2026-03-20T14:31:03.566+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : keepaliveTime...................0
+2026-03-20T14:31:03.566+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : leakDetectionThreshold..........0
+2026-03-20T14:31:03.566+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : maxLifetime.....................1800000
+2026-03-20T14:31:03.568+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : maximumPoolSize.................10
+2026-03-20T14:31:03.568+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : metricRegistry..................none
+2026-03-20T14:31:03.568+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : metricsTrackerFactory...........none
+2026-03-20T14:31:03.568+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : minimumIdle.....................10
+2026-03-20T14:31:03.568+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : password........................<masked>
+2026-03-20T14:31:03.568+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : poolName........................"HikariPool-1"
+2026-03-20T14:31:03.568+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : readOnly........................false
+2026-03-20T14:31:03.568+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : registerMbeans..................false
+2026-03-20T14:31:03.568+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : scheduledExecutor...............none
+2026-03-20T14:31:03.569+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : schema..........................none
+2026-03-20T14:31:03.569+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : threadFactory...................internal
+2026-03-20T14:31:03.569+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : transactionIsolation............default
+2026-03-20T14:31:03.569+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : username........................"postgres.svtpjdaxikucgpflbeln"
+2026-03-20T14:31:03.569+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariConfig           : validationTimeout...............5000
+2026-03-20T14:31:03.569+05:30  INFO 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-20T14:31:04.818+05:30  INFO 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@45297e7
+2026-03-20T14:31:04.823+05:30  INFO 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-20T14:31:04.930+05:30 DEBUG 27188 --- [neesh-ai-backend] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=1, active=1, idle=0, waiting=0)
+2026-03-20T14:31:04.940+05:30  WARN 27188 --- [neesh-ai-backend] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-20T14:31:05.631+05:30 DEBUG 27188 --- [neesh-ai-backend] [onnection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@44d3f3e8
+2026-03-20T14:31:06.348+05:30 DEBUG 27188 --- [neesh-ai-backend] [onnection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4e2b9898
+2026-03-20T14:31:06.783+05:30  INFO 27188 --- [neesh-ai-backend] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-20T14:31:06.966+05:30 DEBUG 27188 --- [neesh-ai-backend] [onnection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@b290f39
+2026-03-20T14:31:07.575+05:30 DEBUG 27188 --- [neesh-ai-backend] [onnection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@50bee107
+2026-03-20T14:31:08.294+05:30 DEBUG 27188 --- [neesh-ai-backend] [onnection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2895729a
+2026-03-20T14:31:08.711+05:30 DEBUG 27188 --- [neesh-ai-backend] [onnection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4c1792c8
+2026-03-20T14:31:09.214+05:30 DEBUG 27188 --- [neesh-ai-backend] [onnection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@309389b7
+2026-03-20T14:31:09.833+05:30  INFO 27188 --- [neesh-ai-backend] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-20T14:31:09.931+05:30 DEBUG 27188 --- [neesh-ai-backend] [onnection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@33913c9d
+2026-03-20T14:31:10.205+05:30  INFO 27188 --- [neesh-ai-backend] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-20T14:31:10.366+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] c.n.b.security.JwtAuthenticationFilter   : Filter 'jwtAuthenticationFilter' configured for use
+2026-03-20T14:31:10.648+05:30 DEBUG 27188 --- [neesh-ai-backend] [onnection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6f48efd9
+2026-03-20T14:31:10.671+05:30 DEBUG 27188 --- [neesh-ai-backend] [onnection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After adding stats (total=10, active=0, idle=10, waiting=0)
+2026-03-20T14:31:10.855+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] org.hibernate.SQL                        : select ar1_0.id from admin_roles ar1_0 where ar1_0.username=? fetch first ? rows only
+2026-03-20T14:31:11.225+05:30  INFO 27188 --- [neesh-ai-backend] [           main] c.n.backend.email.ResendEmailService     : ResendEmailService initialized with API key: re_C...
+2026-03-20T14:31:13.190+05:30  WARN 27188 --- [neesh-ai-backend] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-20T14:31:13.564+05:30  INFO 27188 --- [neesh-ai-backend] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5af410a1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4c12e25d, org.springframework.security.web.context.SecurityContextHolderFilter@3da20c42, org.springframework.security.web.header.HeaderWriterFilter@47ce44ab, org.springframework.web.filter.CorsFilter@1dc28c66, org.springframework.security.web.authentication.logout.LogoutFilter@5b2235a5, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@74ed1b3d, com.neeshai.backend.security.JwtAuthenticationFilter@5345552f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6e9e4332, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4c32d208, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@503a3c11, org.springframework.security.web.session.SessionManagementFilter@5ace2ce3, org.springframework.security.web.access.ExceptionTranslationFilter@40699137, org.springframework.security.web.access.intercept.AuthorizationFilter@475cb91b]
+2026-03-20T14:31:13.833+05:30  WARN 27188 --- [neesh-ai-backend] [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-03-20T14:31:13.837+05:30  INFO 27188 --- [neesh-ai-backend] [           main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-20T14:31:13.840+05:30  INFO 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-03-20T14:31:13.840+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+2026-03-20T14:31:13.844+05:30 DEBUG 27188 --- [neesh-ai-backend] [nnection closer] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@45297e7: (connection evicted)
+2026-03-20T14:31:13.885+05:30 DEBUG 27188 --- [neesh-ai-backend] [nnection closer] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@44d3f3e8: (connection evicted)
+2026-03-20T14:31:13.923+05:30 DEBUG 27188 --- [neesh-ai-backend] [nnection closer] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@4e2b9898: (connection evicted)
+2026-03-20T14:31:13.966+05:30 DEBUG 27188 --- [neesh-ai-backend] [nnection closer] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@b290f39: (connection evicted)
+2026-03-20T14:31:14.006+05:30 DEBUG 27188 --- [neesh-ai-backend] [nnection closer] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@50bee107: (connection evicted)
+2026-03-20T14:31:14.176+05:30 DEBUG 27188 --- [neesh-ai-backend] [nnection closer] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@2895729a: (connection evicted)
+2026-03-20T14:31:14.217+05:30 DEBUG 27188 --- [neesh-ai-backend] [nnection closer] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@4c1792c8: (connection evicted)
+2026-03-20T14:31:14.306+05:30 DEBUG 27188 --- [neesh-ai-backend] [nnection closer] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@309389b7: (connection evicted)
+2026-03-20T14:31:14.382+05:30 DEBUG 27188 --- [neesh-ai-backend] [nnection closer] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@33913c9d: (connection evicted)
+2026-03-20T14:31:14.475+05:30 DEBUG 27188 --- [neesh-ai-backend] [nnection closer] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@6f48efd9: (connection evicted)
+2026-03-20T14:31:14.555+05:30 DEBUG 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+2026-03-20T14:31:14.555+05:30  INFO 27188 --- [neesh-ai-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-03-20T14:31:14.573+05:30  INFO 27188 --- [neesh-ai-backend] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-03-20T14:31:14.598+05:30 ERROR 27188 --- [neesh-ai-backend] [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8081 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8081 or configure this application to listen on another port.
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  18.253 s
+[INFO] Finished at: 2026-03-20T14:31:15+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.2.1:run (default-cli) on project backend: Process terminated with exit code: 1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
