@@ -48,14 +48,8 @@ public class PublicBlogSharingIntegrationTest {
         projectRepository.deleteAll();
 
         // Create test project
-        testProject = Project.builder()
-            .id(UUID.fromString("c7e3f37b-90fe-4d68-a2a7-bca5d2800f27"))
-            .ownerId(UUID.randomUUID())
-            .title("Amazing Test Blog Post")
-            .description("This is a test blog post for integration testing")
-            .slug("amazing-test-blog-post")
-            .isPublic(true)
-            .build();
+        testProject = new Project(UUID.fromString("c7e3f37b-90fe-4d68-a2a7-bca5d2800f27"), UUID.randomUUID(), "Amazing Test Blog Post", "amazing-test-blog-post");
+        testProject.setDescription("This is a test blog post for integration testing");
 
         testProject = projectRepository.save(testProject);
 
@@ -129,12 +123,8 @@ public class PublicBlogSharingIntegrationTest {
     @Test
     void getPublicBlogForProjectWithoutBlog_ShouldReturnEmptyBlogContent() throws Exception {
         // Create project without blog
-        Project projectWithoutBlog = Project.builder()
-            .ownerId(UUID.randomUUID())
-            .title("Project Without Blog")
-            .description("Test project")
-            .isPublic(true)
-            .build();
+        Project projectWithoutBlog = new Project(UUID.randomUUID(), UUID.randomUUID(), "Project Without Blog", "project-without-blog");
+        projectWithoutBlog.setDescription("Test project");
 
         projectWithoutBlog = projectRepository.save(projectWithoutBlog);
 

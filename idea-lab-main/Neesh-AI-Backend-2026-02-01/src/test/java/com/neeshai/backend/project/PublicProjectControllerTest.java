@@ -47,13 +47,8 @@ class PublicProjectControllerTest {
     void getPublicProject_WhenProjectExists_ShouldReturnProject() throws Exception {
         // Given
         String slug = "test-project-slug";
-        Project testProject = Project.builder()
-            .id(UUID.randomUUID())
-            .title("Test Project")
-            .description("Test Description")
-            .slug(slug)
-            .isPublic(true)
-            .build();
+        Project testProject = new Project(UUID.randomUUID(), UUID.randomUUID(), "Test Project", slug);
+        testProject.setDescription("Test Description");
 
         when(projectService.getPublicProject(slug)).thenReturn(Optional.of(testProject));
 
@@ -106,7 +101,7 @@ class PublicProjectControllerTest {
 
         // When & Then
         mockMvc.perform(get("/api/public/projects/{projectId}/blog", projectId))
-            .andExpected(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test

@@ -1,0 +1,4 @@
+com\neeshai\backend\blog\BlogServiceTest.class
+com\neeshai\backend\project\PublicProjectControllerTest.class
+com\neeshai\backend\integration\PublicBlogSharingIntegrationTest.class
+com\neeshai\backend\chat\ChatControllerIntegrationTest.class

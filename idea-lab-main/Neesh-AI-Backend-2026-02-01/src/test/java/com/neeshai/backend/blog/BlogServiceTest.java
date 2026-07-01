@@ -44,12 +44,8 @@ class BlogServiceTest {
         projectId = UUID.randomUUID();
         ownerId = UUID.randomUUID();
 
-        testProject = Project.builder()
-            .id(projectId)
-            .ownerId(ownerId)
-            .title("Test Project")
-            .description("Test Description")
-            .build();
+        testProject = new Project(projectId, ownerId, "Test Project", "test-project");
+        testProject.setDescription("Test Description");
 
         testBlog = Blog.builder()
             .id(UUID.randomUUID())
@@ -63,11 +59,11 @@ class BlogServiceTest {
     }
 
     @Test
-    void getBlogContent_WhenProjectExists_ShouldReturnBlogContent() {
+    void getBlogContent_WhenProjectExists_ShouldReturnBlogContent() throws Exception {
         // Given
         when(projectRepository.findById(projectId)).thenReturn(Optional.of(testProject));
         when(blogRepository.findByProjectId(projectId)).thenReturn(Optional.of(testBlog));
-        when(objectMapper.readValue(eq("[]"), any())).thenReturn(List.of());
+        when(objectMapper.readValue(eq("[]"), any(com.fasterxml.jackson.core.type.TypeReference.class))).thenReturn(List.of());
 
         // When
         Optional<BlogDTOs.BlogContentDTO> result = blogService.getBlogContent(projectId, ownerId);
@@ -108,11 +104,11 @@ class BlogServiceTest {
     }
 
     @Test
-    void getBlogContent_WithNullOwner_ShouldAllowPublicAccess() {
+    void getBlogContent_WithNullOwner_ShouldAllowPublicAccess() throws Exception {
         // Given
         when(projectRepository.findById(projectId)).thenReturn(Optional.of(testProject));
         when(blogRepository.findByProjectId(projectId)).thenReturn(Optional.of(testBlog));
-        when(objectMapper.readValue(eq("[]"), any())).thenReturn(List.of());
+        when(objectMapper.readValue(eq("[]"), any(com.fasterxml.jackson.core.type.TypeReference.class))).thenReturn(List.of());
 
         // When
         Optional<BlogDTOs.BlogContentDTO> result = blogService.getBlogContent(projectId, null);
