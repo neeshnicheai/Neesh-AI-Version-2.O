@@ -53,6 +53,12 @@ public class Project {
     @Column(name = "updated_at", columnDefinition = "TIMESTAMP WITH TIME ZONE")
     private ZonedDateTime updatedAt;
 
+    @Column(columnDefinition = "TEXT")
+    private String industry;
+
+    @Column(name = "startup_stage", columnDefinition = "TEXT")
+    private String startupStage;
+
     public Project() {
     }
 
@@ -169,5 +175,21 @@ public class Project {
 
     public void setUpdatedAt(ZonedDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(String industry) {
+        this.industry = industry;
+    }
+
+    public String getStartupStage() {
+        return startupStage;
+    }
+
+    public void setStartupStage(String startupStage) {
+        this.startupStage = startupStage;
     }
 }

@@ -50,7 +50,9 @@ public class ProjectController {
                     request.title(),
                     request.oneLineSummary(),
                     "",
-                    request.description());
+                    request.description(),
+                    request.industry(),
+                    request.startupStage());
         }
 
         Project project = projectService.createProject(ownerId, processedRequest);

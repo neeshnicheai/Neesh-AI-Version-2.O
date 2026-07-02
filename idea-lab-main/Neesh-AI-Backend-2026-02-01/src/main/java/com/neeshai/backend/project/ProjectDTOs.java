@@ -9,7 +9,9 @@ public class ProjectDTOs {
             String title,
             String oneLineSummary,
             String introduction,
-            String description) {
+            String description,
+            String industry,
+            String startupStage) {
     }
 
     public record UpdateProjectRequest(
@@ -17,7 +19,9 @@ public class ProjectDTOs {
             String oneLineSummary,
             String introduction,
             String description,
-            String status) {
+            String status,
+            String industry,
+            String startupStage) {
     }
 
     // PRIVATE DTO (Owner access)
@@ -29,6 +33,8 @@ public class ProjectDTOs {
             String introduction,
             String description,
             String status,
+            String industry,
+            String startupStage,
             ZonedDateTime createdAt,
             ZonedDateTime updatedAt) {
         public static PrivateProjectDTO fromEntity(Project project) {
@@ -40,6 +46,8 @@ public class ProjectDTOs {
                     project.getIntroduction(),
                     project.getDescription(),
                     project.getStatus(),
+                    project.getIndustry(),
+                    project.getStartupStage(),
                     project.getCreatedAt(),
                     project.getUpdatedAt());
         }
@@ -52,6 +60,8 @@ public class ProjectDTOs {
             String oneLineSummary,
             String introduction,
             String description,
+            String industry,
+            String startupStage,
             ZonedDateTime updatedAt) {
         public static PublicProjectDTO fromEntity(Project project) {
             return new PublicProjectDTO(
@@ -60,6 +70,8 @@ public class ProjectDTOs {
                     project.getOneLineSummary(),
                     project.getIntroduction(),
                     project.getDescription(),
+                    project.getIndustry(),
+                    project.getStartupStage(),
                     project.getUpdatedAt());
         }
     }

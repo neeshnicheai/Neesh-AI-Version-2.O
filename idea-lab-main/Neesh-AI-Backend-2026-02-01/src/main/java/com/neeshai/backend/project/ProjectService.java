@@ -51,6 +51,8 @@ public class ProjectService {
         project.setOneLineSummary(request.oneLineSummary());
         project.setIntroduction(request.introduction());
         project.setDescription(request.description());
+        project.setIndustry(request.industry());
+        project.setStartupStage(request.startupStage());
 
         return projectRepository.save(project);
     }
@@ -93,6 +95,10 @@ public class ProjectService {
                         project.setIntroduction(request.introduction());
                     if (request.description() != null)
                         project.setDescription(request.description());
+                    if (request.industry() != null)
+                        project.setIndustry(request.industry());
+                    if (request.startupStage() != null)
+                        project.setStartupStage(request.startupStage());
 
                     // Status Transition Logic
                     if (request.status() != null) {

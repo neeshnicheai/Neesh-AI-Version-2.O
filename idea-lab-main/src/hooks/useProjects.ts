@@ -12,6 +12,8 @@ interface BackendProject {
   introduction: string | null;
   description: string | null;
   status: string;
+  industry: string | null;
+  startupStage: string | null;
   chatbotName: string | null;
   welcomeMessage: string | null;
   primaryColor: string | null;
@@ -30,6 +32,8 @@ export interface Project {
   introduction: string | null;
   description: string | null;
   status: string;
+  industry: string | null;
+  startup_stage: string | null;
   chatbot_name: string | null;
   welcome_message: string | null;
   primary_color: string | null;
@@ -44,6 +48,8 @@ export interface CreateProjectInput {
   one_line_summary?: string;
   introduction?: string;
   description?: string;
+  industry?: string;
+  startup_stage?: string;
   chatbot_name?: string;
   welcome_message?: string;
   primary_color?: string;
@@ -56,6 +62,8 @@ export interface UpdateProjectInput {
   introduction?: string;
   description?: string;
   status?: string;
+  industry?: string;
+  startup_stage?: string;
   chatbot_name?: string;
   welcome_message?: string;
   primary_color?: string;
@@ -72,6 +80,8 @@ const transformProject = (backendProject: BackendProject): Project => ({
   introduction: backendProject.introduction,
   description: backendProject.description,
   status: backendProject.status,
+  industry: backendProject.industry,
+  startup_stage: backendProject.startupStage,
   chatbot_name: backendProject.chatbotName,
   welcome_message: backendProject.welcomeMessage,
   primary_color: backendProject.primaryColor,
@@ -87,6 +97,8 @@ const transformCreateInput = (input: CreateProjectInput) => ({
   oneLineSummary: input.one_line_summary || null,
   introduction: input.introduction || null,
   description: input.description || null,
+  industry: input.industry || null,
+  startupStage: input.startup_stage || null,
   chatbotName: input.chatbot_name || null,
   welcomeMessage: input.welcome_message || null,
   primaryColor: input.primary_color || null,
@@ -99,6 +111,8 @@ const transformUpdateInput = (input: UpdateProjectInput) => ({
   introduction: input.introduction,
   description: input.description,
   status: input.status,
+  industry: input.industry,
+  startupStage: input.startup_stage,
   chatbotName: input.chatbot_name,
   welcomeMessage: input.welcome_message,
   primaryColor: input.primary_color,

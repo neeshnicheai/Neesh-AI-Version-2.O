@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import CreateProjectWizard from "@/components/project/CreateProjectWizard";
 import {
   Dialog,
   DialogContent,
@@ -70,6 +71,7 @@ import { NeeshLogo } from "@/components/NeeshLogo";
 import { BetaBadge } from "@/components/BetaBadge";
 import { generateShareableUrl } from "@/lib/slugify";
 import apiClient from "@/lib/api";
+import { useBlogs } from "@/hooks/useBlogs";
 
 // Status styles mapping
 
@@ -109,19 +111,13 @@ const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("recent");
   const [copiedId, setCopiedId] = useState<string | null>(null);
-  const [isCreating, setIsCreating] = useState(false);
-  const [newProject, setNewProject] = useState({
-    title: "",
-    summary: "",
-    introduction: "",
-    description: "",
-  });
   const { user, loading: authLoading, signOut } = useAuth();
   const { projects, loading: projectsLoading, createProject } = useProjects();
   const { profile } = useProfile();
   const { subscription, isPro, isFree, canCreateProject, upgradeToPro, refetch: refetchSubscription, daysRemaining } = useSubscription();
   const { promotions, submitPromotion, removePromotion } = usePromotions();
   const { verifying } = usePaymentVerification();
+  const { upsertBlog } = useBlogs();
   const [helpOpen, setHelpOpen] = useState(false);
   const [upgradeOpen, setUpgradeOpen] = useState(false);
   const [betaUpgradeSuccess, setBetaUpgradeSuccess] = useState(false);
@@ -204,31 +200,10 @@ const Dashboard = () => {
     }
   }, [user, authLoading, navigate]);
 
-  const handleCreateProject = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Check project limit for Free users
-    if (!canCreateProject) {
-      setUpgradeOpen(true);
-      return;
-    }
-
-    console.log("[Dashboard] Creating project:", newProject);
-    setIsCreating(true);
-    const result = await createProject({
-      title: newProject.title,
-      one_line_summary: newProject.summary,
-      introduction: newProject.introduction,
-      description: newProject.description,
-    });
-    console.log("[Dashboard] Create project result:", result);
-    setIsCreating(false);
-    if (result) {
-      setNewProject({ title: "", summary: "", introduction: "", description: "" });
-      setIsCreateOpen(false);
-      refetchSubscription();
-      navigate(`/project/${result.id}`);
-    }
+  const handleProjectCreated = (project: any) => {
+    setIsCreateOpen(false);
+    refetchSubscription();
+    navigate(`/project/${project.id}`);
   };
 
   const handleUpgrade = async () => {
@@ -378,9 +353,7 @@ const Dashboard = () => {
                 </DialogContent>
               </Dialog>
 
-              <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
-                <DialogTrigger asChild>
-                  <Button onClick={() => {
+              <Button onClick={() => {
                     if (!canCreateProject) {
                       setUpgradeOpen(true);
                     } else {
@@ -391,67 +364,17 @@ const Dashboard = () => {
                     New Project
                     <BetaBadge variant="static" type="beta" className="ml-1.5" />
                   </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-lg">
-                  <DialogHeader>
-                    <DialogTitle className="font-display text-xl">Create New Project</DialogTitle>
-                  </DialogHeader>
-                  <form onSubmit={handleCreateProject} className="space-y-5 mt-4">
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-                        <FileText className="w-4 h-4 text-muted-foreground" />
-                        Project Title
-                      </div>
-                      <Input
-                        placeholder="Enter your project title"
-                        value={newProject.title}
-                        onChange={(e) => setNewProject({ ...newProject, title: e.target.value })}
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-                        <Tag className="w-4 h-4 text-muted-foreground" />
-                        One Line
-                      </div>
-                      <Input
-                        placeholder="Write a short, catchy summary..."
-                        value={newProject.summary}
-                        onChange={(e) => setNewProject({ ...newProject, summary: e.target.value })}
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-                        <AlignLeft className="w-4 h-4 text-muted-foreground" />
-                        Introduction
-                      </div>
-                      <Input
-                        placeholder="Write a brief introduction to outline the project's purpose..."
-                        value={newProject.introduction}
-                        onChange={(e) => setNewProject({ ...newProject, introduction: e.target.value })}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-                        <FileEdit className="w-4 h-4 text-muted-foreground" />
-                        Description
-                      </div>
-                      <Textarea
-                        placeholder="Describe your project in detail..."
-                        value={newProject.description}
-                        onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
-                        rows={4}
-                        className="resize-none"
-                      />
-                    </div>
-                    <Button type="submit" className="w-full">
-                      <Plus className="w-4 h-4" />
-                      Create Project
-                    </Button>
-                  </form>
-                </DialogContent>
-              </Dialog>
+
+              {/* Spotlight Creation Wizard */}
+              {isCreateOpen && (
+                <CreateProjectWizard
+                  onClose={() => setIsCreateOpen(false)}
+                  createProject={createProject}
+                  upsertBlog={upsertBlog}
+                  onProjectCreated={handleProjectCreated}
+                  canCreateProject={canCreateProject}
+                />
+              )}
 
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
