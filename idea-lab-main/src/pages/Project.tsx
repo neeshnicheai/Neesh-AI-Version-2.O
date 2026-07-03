@@ -60,6 +60,7 @@ import NotificationTab from "@/components/project/NotificationTab";
 import AudienceInsights from "@/components/project/AudienceInsights";
 import { useNotifications } from "@/hooks/useNotifications";
 import ProjectOverview from "@/components/project/ProjectOverview";
+import CreateProjectWizard from "@/components/project/CreateProjectWizard";
 import { useCoverImage } from "@/hooks/useCoverImage";
 import { useProjects, type Project as ProjectType } from "@/hooks/useProjects";
 import { useBlogs } from "@/hooks/useBlogs";
@@ -113,6 +114,7 @@ const Project = () => {
   const { badgeCount, fetchBadgeCount, clusters, fetchClusters } = useNotifications(id);
   const { members: audienceMembers } = useAudienceData(id);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isWizardOpen, setIsWizardOpen] = useState(false);
 
   // Response section state
   const [responseSearch, setResponseSearch] = useState("");
@@ -746,22 +748,41 @@ const Project = () => {
         {/* Content Area */}
         <main className="flex-1 overflow-auto p-8 bg-background">
           {activeTab === "overview" && project && (
-            <ProjectOverview
-              projectId={id || "1"}
-              projectData={{
-                title: project.title,
-                summary: project.one_line_summary || "",
-                description: project.description || "",
-                status: project.status,
-              }}
-              questionsData={clusters.slice(0, 5).map((q) => ({
-                question: q.canonicalQuestion,
-                count: q.totalAskCount,
-                answeredCount: q.status === "answered" ? q.totalAskCount : 0,
-              }))}
-              onDeleteProject={handleDeleteProject}
-              isDeleting={isDeleting}
-            />
+            <>
+              <ProjectOverview
+                projectId={id || "1"}
+                projectData={{
+                  title: project.title,
+                  summary: project.one_line_summary || "",
+                  description: project.description || "",
+                  status: project.status,
+                  onboardingCompleted: project.onboarding_completed,
+                }}
+                validationReport={project.validation_report || null}
+                onResumeOnboarding={() => setIsWizardOpen(true)}
+                questionsData={clusters.slice(0, 5).map((q) => ({
+                  question: q.canonicalQuestion,
+                  count: q.totalAskCount,
+                  answeredCount: q.status === "answered" ? q.totalAskCount : 0,
+                }))}
+                onDeleteProject={handleDeleteProject}
+                isDeleting={isDeleting}
+              />
+              {isWizardOpen && (
+                <CreateProjectWizard
+                  project={project}
+                  onClose={() => setIsWizardOpen(false)}
+                  createProject={async () => null}
+                  updateProject={updateProject}
+                  upsertBlog={upsertBlog}
+                  onProjectCreated={(updatedProject) => {
+                    setProject(updatedProject);
+                    setIsWizardOpen(false);
+                  }}
+                  canCreateProject={true}
+                />
+              )}
+            </>
           )}
 
           {activeTab === "blog" && (

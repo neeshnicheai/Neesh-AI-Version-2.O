@@ -42,6 +42,7 @@ com\neeshai\backend\question\QuestionService.class
 com\neeshai\backend\projectlink\ProjectLinkDTOs$LinkedProjectDTO.class
 com\neeshai\backend\blog\Blog$BlogBuilder.class
 com\neeshai\backend\project\ProjectDTOs.class
+com\neeshai\backend\project\ValidationEngine.class
 com\neeshai\backend\kb\KnowledgeDocumentDTO.class
 com\neeshai\backend\projectlink\ProjectLink.class
 com\neeshai\backend\promotion\PromotionDTOs$SubmitPromotionRequest.class
@@ -50,6 +51,7 @@ com\neeshai\backend\admin\AdminDTOs$AdminLoginResponse.class
 com\neeshai\backend\audience\AudienceQuestionRepository.class
 com\neeshai\backend\project\ProjectDTOs$PublicProjectDTO.class
 com\neeshai\backend\email\OtpService$OtpResult.class
+com\neeshai\backend\project\ValidationEngine$1.class
 com\neeshai\backend\audience\AudienceMemberRepository.class
 com\neeshai\backend\service\SupabaseStorageService$1.class
 com\neeshai\backend\chat\ChatDTOs.class
@@ -117,6 +119,7 @@ com\neeshai\backend\config\RateLimitingConfig$RateLimitInterceptor.class
 com\neeshai\backend\email\OtpController$OtpResponse.class
 com\neeshai\backend\admin\AdminDTOs$ValidateCouponResponse.class
 com\neeshai\backend\audience\AudienceDTOs$AudienceMemberDetail.class
+com\neeshai\backend\project\ValidationEngine$ModuleResult.class
 com\neeshai\backend\notification\ClusterReplyRepository.class
 com\neeshai\backend\config\SecurityConfig.class
 com\neeshai\backend\notification\NotificationDTOs$ClusterInstanceDTO.class

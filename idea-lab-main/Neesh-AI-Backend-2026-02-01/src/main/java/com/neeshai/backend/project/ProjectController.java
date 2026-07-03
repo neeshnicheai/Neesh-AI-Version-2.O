@@ -52,7 +52,9 @@ public class ProjectController {
                     "",
                     request.description(),
                     request.industry(),
-                    request.startupStage());
+                    request.startupStage(),
+                    request.validationAnswers(),
+                    request.onboardingCompleted());
         }
 
         Project project = projectService.createProject(ownerId, processedRequest);

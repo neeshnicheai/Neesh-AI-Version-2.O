@@ -21,12 +21,14 @@ public class ProjectService {
     private final ProjectRepository projectRepository;
     private final ProjectLinkService projectLinkService;
     private final UserRepository userRepository;
+    private final ValidationEngine validationEngine;
 
     public ProjectService(ProjectRepository projectRepository, ProjectLinkService projectLinkService,
-                          UserRepository userRepository) {
+                          UserRepository userRepository, ValidationEngine validationEngine) {
         this.projectRepository = projectRepository;
         this.projectLinkService = projectLinkService;
         this.userRepository = userRepository;
+        this.validationEngine = validationEngine;
     }
 
     @Transactional
@@ -53,6 +55,14 @@ public class ProjectService {
         project.setDescription(request.description());
         project.setIndustry(request.industry());
         project.setStartupStage(request.startupStage());
+
+        // Validation engine: store answers and compute report
+        if (request.validationAnswers() != null && !request.validationAnswers().isBlank()) {
+            project.setValidationAnswers(request.validationAnswers());
+            project.setValidationReport(validationEngine.generateReport(request.validationAnswers()));
+        }
+
+        project.setOnboardingCompleted(request.onboardingCompleted() != null ? request.onboardingCompleted() : false);
 
         return projectRepository.save(project);
     }
@@ -99,6 +109,15 @@ public class ProjectService {
                         project.setIndustry(request.industry());
                     if (request.startupStage() != null)
                         project.setStartupStage(request.startupStage());
+
+                    // Validation engine: update answers and recompute report
+                    if (request.validationAnswers() != null && !request.validationAnswers().isBlank()) {
+                        project.setValidationAnswers(request.validationAnswers());
+                        project.setValidationReport(validationEngine.generateReport(request.validationAnswers()));
+                    }
+
+                    if (request.onboardingCompleted() != null)
+                        project.setOnboardingCompleted(request.onboardingCompleted());
 
                     // Status Transition Logic
                     if (request.status() != null) {

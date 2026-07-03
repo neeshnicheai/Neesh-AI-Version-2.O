@@ -11,7 +11,9 @@ public class ProjectDTOs {
             String introduction,
             String description,
             String industry,
-            String startupStage) {
+            String startupStage,
+            String validationAnswers,
+            Boolean onboardingCompleted) {
     }
 
     public record UpdateProjectRequest(
@@ -21,7 +23,9 @@ public class ProjectDTOs {
             String description,
             String status,
             String industry,
-            String startupStage) {
+            String startupStage,
+            String validationAnswers,
+            Boolean onboardingCompleted) {
     }
 
     // PRIVATE DTO (Owner access)
@@ -35,6 +39,8 @@ public class ProjectDTOs {
             String status,
             String industry,
             String startupStage,
+            String validationReport,
+            Boolean onboardingCompleted,
             ZonedDateTime createdAt,
             ZonedDateTime updatedAt) {
         public static PrivateProjectDTO fromEntity(Project project) {
@@ -48,6 +54,8 @@ public class ProjectDTOs {
                     project.getStatus(),
                     project.getIndustry(),
                     project.getStartupStage(),
+                    project.getValidationReport(),
+                    project.getOnboardingCompleted() != null ? project.getOnboardingCompleted() : false,
                     project.getCreatedAt(),
                     project.getUpdatedAt());
         }

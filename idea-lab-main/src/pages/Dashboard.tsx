@@ -112,7 +112,7 @@ const Dashboard = () => {
   const [sortBy, setSortBy] = useState("recent");
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const { user, loading: authLoading, signOut } = useAuth();
-  const { projects, loading: projectsLoading, createProject } = useProjects();
+  const { projects, loading: projectsLoading, createProject, updateProject } = useProjects();
   const { profile } = useProfile();
   const { subscription, isPro, isFree, canCreateProject, upgradeToPro, refetch: refetchSubscription, daysRemaining } = useSubscription();
   const { promotions, submitPromotion, removePromotion } = usePromotions();
@@ -370,6 +370,7 @@ const Dashboard = () => {
                 <CreateProjectWizard
                   onClose={() => setIsCreateOpen(false)}
                   createProject={createProject}
+                  updateProject={updateProject}
                   upsertBlog={upsertBlog}
                   onProjectCreated={handleProjectCreated}
                   canCreateProject={canCreateProject}

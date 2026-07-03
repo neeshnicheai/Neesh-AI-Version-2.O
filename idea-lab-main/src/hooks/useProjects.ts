@@ -14,6 +14,8 @@ interface BackendProject {
   status: string;
   industry: string | null;
   startupStage: string | null;
+  validationReport: string | null;
+  onboardingCompleted: boolean | null;
   chatbotName: string | null;
   welcomeMessage: string | null;
   primaryColor: string | null;
@@ -34,6 +36,8 @@ export interface Project {
   status: string;
   industry: string | null;
   startup_stage: string | null;
+  validation_report: string | null;
+  onboarding_completed: boolean;
   chatbot_name: string | null;
   welcome_message: string | null;
   primary_color: string | null;
@@ -50,6 +54,8 @@ export interface CreateProjectInput {
   description?: string;
   industry?: string;
   startup_stage?: string;
+  validation_answers?: string;
+  onboarding_completed?: boolean;
   chatbot_name?: string;
   welcome_message?: string;
   primary_color?: string;
@@ -64,6 +70,8 @@ export interface UpdateProjectInput {
   status?: string;
   industry?: string;
   startup_stage?: string;
+  validation_answers?: string;
+  onboarding_completed?: boolean;
   chatbot_name?: string;
   welcome_message?: string;
   primary_color?: string;
@@ -82,6 +90,8 @@ const transformProject = (backendProject: BackendProject): Project => ({
   status: backendProject.status,
   industry: backendProject.industry,
   startup_stage: backendProject.startupStage,
+  validation_report: backendProject.validationReport,
+  onboarding_completed: backendProject.onboardingCompleted || false,
   chatbot_name: backendProject.chatbotName,
   welcome_message: backendProject.welcomeMessage,
   primary_color: backendProject.primaryColor,
@@ -99,6 +109,8 @@ const transformCreateInput = (input: CreateProjectInput) => ({
   description: input.description || null,
   industry: input.industry || null,
   startupStage: input.startup_stage || null,
+  validationAnswers: input.validation_answers || null,
+  onboardingCompleted: input.onboarding_completed || null,
   chatbotName: input.chatbot_name || null,
   welcomeMessage: input.welcome_message || null,
   primaryColor: input.primary_color || null,
@@ -113,6 +125,8 @@ const transformUpdateInput = (input: UpdateProjectInput) => ({
   status: input.status,
   industry: input.industry,
   startupStage: input.startup_stage,
+  validationAnswers: input.validation_answers,
+  onboardingCompleted: input.onboarding_completed,
   chatbotName: input.chatbot_name,
   welcomeMessage: input.welcome_message,
   primaryColor: input.primary_color,

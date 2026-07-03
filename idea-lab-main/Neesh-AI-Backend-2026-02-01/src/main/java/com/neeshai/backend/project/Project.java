@@ -59,6 +59,15 @@ public class Project {
     @Column(name = "startup_stage", columnDefinition = "TEXT")
     private String startupStage;
 
+    @Column(name = "validation_answers", columnDefinition = "TEXT")
+    private String validationAnswers;
+
+    @Column(name = "validation_report", columnDefinition = "TEXT")
+    private String validationReport;
+
+    @Column(name = "onboarding_completed")
+    private Boolean onboardingCompleted = false;
+
     public Project() {
     }
 
@@ -191,5 +200,29 @@ public class Project {
 
     public void setStartupStage(String startupStage) {
         this.startupStage = startupStage;
+    }
+
+    public String getValidationAnswers() {
+        return validationAnswers;
+    }
+
+    public void setValidationAnswers(String validationAnswers) {
+        this.validationAnswers = validationAnswers;
+    }
+
+    public String getValidationReport() {
+        return validationReport;
+    }
+
+    public void setValidationReport(String validationReport) {
+        this.validationReport = validationReport;
+    }
+
+    public Boolean getOnboardingCompleted() {
+        return onboardingCompleted;
+    }
+
+    public void setOnboardingCompleted(Boolean onboardingCompleted) {
+        this.onboardingCompleted = onboardingCompleted;
     }
 }

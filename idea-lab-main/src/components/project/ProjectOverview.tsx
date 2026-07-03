@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { RefreshCw, HelpCircle, Users, Trash2, Loader2 } from "lucide-react";
+import { RefreshCw, HelpCircle, Users, Trash2, Loader2, Rocket, ArrowRight } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -29,6 +29,7 @@ import LinkProjectModal from "./LinkProjectModal";
 import { generateShareableUrl } from "@/lib/slugify";
 import { useAudienceData } from "@/hooks/useAudienceData";
 import { useProjectLinks } from "@/hooks/useProjectLinks";
+import ValidationReportView from "./ValidationReportView";
 
 type ValidationStage = "early" | "gathering" | "detecting" | "refining" | "validated";
 type PersonaType = "developer" | "marketer" | "investor" | "designer" | "entrepreneur" | "researcher" | "other";
@@ -40,7 +41,10 @@ interface ProjectOverviewProps {
     summary?: string;
     description?: string;
     status: string;
+    onboardingCompleted?: boolean;
   };
+  validationReport?: string | null;
+  onResumeOnboarding?: () => void;
   questionsData: Array<{
     question: string;
     count: number;
@@ -178,7 +182,7 @@ function computeSummary(
 
 // ===== Component =====
 
-const ProjectOverview = ({ projectId, projectData, questionsData, onDeleteProject, isDeleting }: ProjectOverviewProps) => {
+const ProjectOverview = ({ projectId, projectData, validationReport, onResumeOnboarding, questionsData, onDeleteProject, isDeleting }: ProjectOverviewProps) => {
   const navigate = useNavigate();
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
@@ -317,8 +321,97 @@ const ProjectOverview = ({ projectId, projectData, questionsData, onDeleteProjec
     );
   }
 
+  if (projectData.onboardingCompleted === false) {
+    return (
+      <div className="space-y-6 max-w-[1200px] mx-auto">
+        <div className="flex flex-col items-center justify-center p-12 bg-white rounded-2xl border border-gray-100 shadow-sm max-w-2xl mx-auto text-center space-y-6 my-12">
+          <div
+            className="w-16 h-16 rounded-2xl flex items-center justify-center text-cyan-600"
+            style={{ background: "hsl(186, 60%, 93%)" }}
+          >
+            <Rocket className="w-8 h-8" style={{ color: "hsl(190, 85%, 38%)" }} />
+          </div>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-gray-900">Validation Incomplete</h2>
+            <p className="text-gray-500 text-sm max-w-md mx-auto">
+              You exited the startup validation questions halfway. Complete all questions to generate your investor-grade validation report and auto-populate your blog.
+            </p>
+          </div>
+          <Button
+            onClick={onResumeOnboarding}
+            className="px-8 py-3 text-base font-semibold rounded-xl gap-2 shadow-sm"
+            style={{ background: "linear-gradient(135deg, hsl(190, 85%, 38%), hsl(186, 93%, 48%))" }}
+          >
+            Resume Validation Questionnaire
+            <ArrowRight className="w-4 h-4" />
+          </Button>
+        </div>
+
+        {/* Danger Zone — Delete Project */}
+        {onDeleteProject && (
+          <div className="border border-destructive/20 bg-card rounded-lg p-6 max-w-2xl mx-auto">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+                  <Trash2 className="w-4 h-4 text-destructive" />
+                  Delete Project
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Permanently delete this project and all associated data. This action cannot be undone.
+                </p>
+              </div>
+              <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+                <AlertDialogTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="border-destructive/50 text-destructive hover:bg-destructive hover:text-destructive-foreground transition-colors"
+                  >
+                    <Trash2 className="w-4 h-4 mr-2" />
+                    Delete Project
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Delete Project</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Are you sure you want to delete <strong>"{projectData.title}"</strong>? This action cannot be undone. All project data, linked projects, and associated content will be permanently removed.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={() => {
+                        setShowDeleteDialog(false);
+                        onDeleteProject();
+                      }}
+                      className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                      disabled={isDeleting}
+                    >
+                      {isDeleting ? (
+                        <><Loader2 className="w-4 h-4 animate-spin mr-2" />Deleting...</>
+                      ) : (
+                        "Delete Project"
+                      )}
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6 max-w-[1200px] mx-auto">
+      {/* Validation Report — if available, render this instead of default widgets */}
+      {validationReport && validationReport !== "{}" ? (
+        <>
+          <ValidationReportView reportJson={validationReport} />
+        </>
+      ) : (
+        <>
       {/* 1. Idea Pulse Card - Hero Section */}
       <IdeaPulseCard
         title={projectData.title}
@@ -411,6 +504,9 @@ const ProjectOverview = ({ projectId, projectData, questionsData, onDeleteProjec
         events={timelineEvents}
         totalIterations={timelineEvents.length}
       />
+
+        </> /* end fallback widgets */
+      )}
 
       {/* 8. Danger Zone — Delete Project */}
       {onDeleteProject && (
