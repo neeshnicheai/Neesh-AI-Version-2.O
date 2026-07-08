@@ -38,7 +38,9 @@ public class AudienceService {
      */
     @Transactional(readOnly = true)
     public AudienceDTOs.AudienceMemberListResponse getAudienceMembers(UUID projectId) {
-        List<AudienceMember> members = memberRepository.findByProjectIdOrderByLastInteractionAtDesc(projectId);
+        // Only return real audience members — excludes anonymous chatbot-generated entries
+        // (those with feedbackSource='Chatbot' and auto-generated '@chatbot' emails)
+        List<AudienceMember> members = memberRepository.findRealAudienceByProjectId(projectId);
         List<AudienceDTOs.AudienceMemberSummary> summaries = members.stream()
                 .map(AudienceDTOs.AudienceMemberSummary::fromEntity)
                 .toList();

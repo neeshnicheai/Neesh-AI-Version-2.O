@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { RefreshCw, HelpCircle, Users, Trash2, Loader2, Rocket, ArrowRight } from "lucide-react";
+import { RefreshCw, HelpCircle, Users, Trash2, Loader2, Rocket, ArrowRight, AlertTriangle, Copy, Check, Link as LinkIcon } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -322,18 +322,34 @@ const ProjectOverview = ({ projectId, projectData, validationReport, onResumeOnb
   }
 
   if (projectData.onboardingCompleted === false) {
+    const resumeUrl = `${window.location.origin}/project/${projectId}?resume=true`;
+
     return (
       <div className="space-y-6 max-w-[1200px] mx-auto">
-        <div className="flex flex-col items-center justify-center p-12 bg-white rounded-2xl border border-gray-100 shadow-sm max-w-2xl mx-auto text-center space-y-6 my-12">
+        {/* ⚠️ Warning Banner */}
+        <div className="flex items-start gap-4 p-5 rounded-2xl border-2 border-amber-400/60 bg-amber-50 dark:bg-amber-950/30 shadow-sm">
+          <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center">
+            <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+          </div>
+          <div>
+            <h3 className="font-semibold text-amber-800 dark:text-amber-300 text-base">Incomplete Validation — Analytics Locked</h3>
+            <p className="text-sm text-amber-700 dark:text-amber-400/80 mt-1 leading-relaxed">
+              Your validation questionnaire is incomplete. Without finishing it, your AI-powered validation report, audience insights, and blog auto-population will remain locked. Complete all steps to unlock the full dashboard.
+            </p>
+          </div>
+        </div>
+
+        {/* Main Card */}
+        <div className="flex flex-col items-center justify-center p-12 bg-white dark:bg-card rounded-2xl border border-gray-100 dark:border-border shadow-sm max-w-2xl mx-auto text-center space-y-6">
           <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center text-cyan-600"
+            className="w-16 h-16 rounded-2xl flex items-center justify-center"
             style={{ background: "hsl(186, 60%, 93%)" }}
           >
             <Rocket className="w-8 h-8" style={{ color: "hsl(190, 85%, 38%)" }} />
           </div>
           <div className="space-y-2">
-            <h2 className="text-2xl font-bold text-gray-900">Validation Incomplete</h2>
-            <p className="text-gray-500 text-sm max-w-md mx-auto">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-foreground">Validation Incomplete</h2>
+            <p className="text-gray-500 dark:text-muted-foreground text-sm max-w-md mx-auto">
               You exited the startup validation questions halfway. Complete all questions to generate your investor-grade validation report and auto-populate your blog.
             </p>
           </div>
@@ -345,6 +361,34 @@ const ProjectOverview = ({ projectId, projectData, validationReport, onResumeOnb
             Resume Validation Questionnaire
             <ArrowRight className="w-4 h-4" />
           </Button>
+
+          {/* Shareable Link */}
+          <div className="w-full pt-2">
+            <p className="text-xs text-muted-foreground mb-2 font-medium flex items-center justify-center gap-1">
+              <LinkIcon className="w-3.5 h-3.5" />
+              Share this link to let a teammate continue the validation:
+            </p>
+            <div className="flex items-center gap-2 w-full">
+              <input
+                readOnly
+                value={resumeUrl}
+                className="flex-1 text-xs rounded-xl border border-border bg-muted/50 px-3 py-2 text-muted-foreground font-mono cursor-text select-all focus:outline-none"
+                onFocus={e => e.target.select()}
+              />
+              <Button
+                size="sm"
+                variant="outline"
+                className="rounded-xl shrink-0 gap-1.5"
+                onClick={() => {
+                  navigator.clipboard.writeText(resumeUrl);
+                  toast.success("Link copied!", { description: "Share this link to continue the validation questionnaire." });
+                }}
+              >
+                <Copy className="w-3.5 h-3.5" />
+                Copy
+              </Button>
+            </div>
+          </div>
         </div>
 
         {/* Danger Zone — Delete Project */}

@@ -116,6 +116,13 @@ const Project = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isWizardOpen, setIsWizardOpen] = useState(false);
 
+  // Auto-open wizard if shareable resume link was used (?resume=true)
+  useEffect(() => {
+    if (searchParams.get('resume') === 'true') {
+      setIsWizardOpen(true);
+    }
+  }, [searchParams]);
+
   // Response section state
   const [responseSearch, setResponseSearch] = useState("");
   const [occupationFilter, setOccupationFilter] = useState<string>("all");
